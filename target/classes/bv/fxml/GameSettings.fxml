@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="bv.MVC.GameSettingsController" spacing="10" alignment="CENTER">
+    <Label text="Game Settings" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <!-- Number of Players -->
+    <Label text="Number of Players:"/>
+    <ChoiceBox fx:id="playerCountChoiceBox"/>
+
+    <!-- Topic -->
+    <Label text="Select Topic:"/>
+    <ChoiceBox fx:id="topicChoiceBox"/>
+
+    <!-- Time Per Guess -->
+    <Label text="Time Per Guess (seconds):"/>
+    <TextField fx:id="timePerGuessTextField" promptText="Enter time (5-15)"/>
+
+    <!-- Action Buttons -->
+    
+    <Button text="Play Online" fx:id="playOnlineButton" onAction="#playOnline"/>
+    <Button text="Play Offline" fx:id="playOfflineButton" onAction="#playOffline"/>
+    <Button text="Cancel" fx:id="cancelButton" onAction="#cancel"/>
+</VBox>
