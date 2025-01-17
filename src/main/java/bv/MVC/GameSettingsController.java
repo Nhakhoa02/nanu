@@ -12,6 +12,9 @@ public class GameSettingsController {
     private ChoiceBox<Integer> playerCountChoiceBox;
 
     @FXML
+    private ChoiceBox<Integer> lidCountChoiceBox;
+
+    @FXML
     private ChoiceBox<String> topicChoiceBox;
 
     @FXML
@@ -19,9 +22,13 @@ public class GameSettingsController {
 
     @FXML
     private void initialize() {
-        // Initialize player count options
+        // Initialize player player count options
         playerCountChoiceBox.setItems(FXCollections.observableArrayList(2, 3, 4, 5));
         playerCountChoiceBox.setValue(2); // Default value
+
+        // Initialize player lid count options
+        lidCountChoiceBox.setItems(FXCollections.observableArrayList(2, 3, 4, 5));
+        lidCountChoiceBox.setValue(2); // Default value
 
         // Initialize topics
         topicChoiceBox.setItems(FXCollections.observableArrayList("Topic 1", "Topic 2"));

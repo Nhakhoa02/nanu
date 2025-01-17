@@ -13,6 +13,10 @@
     <Label text="Number of Players:"/>
     <ChoiceBox fx:id="playerCountChoiceBox"/>
 
+    <!-- Number of Lids -->
+    <Label text="Number of Lids:"/>
+    <ChoiceBox fx:id="lidCountChoiceBox"/>
+
     <!-- Topic -->
     <Label text="Select Topic:"/>
     <ChoiceBox fx:id="topicChoiceBox"/>
