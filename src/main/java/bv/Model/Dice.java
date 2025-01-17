@@ -15,12 +15,12 @@ public class Dice {
     }
 
     // Roll the dice to get a random face (0 to numberOfFaces - 1)
-    public void roll() {
+    public void rollDice() {
         this.result = random.nextInt(numberOfFaces); // Random number between 0 and (numberOfFaces - 1)
     }
 
     // Get the result of the last roll
-    public int getResult() {
+    public int getDice() {
         if (result == -1) {
             throw new IllegalStateException("Dice has not been rolled yet.");
         }
@@ -33,8 +33,8 @@ public class Dice {
 
         // Simulate rolling the dice a few times
         for (int i = 0; i < 10; i++) {
-            dice.roll();
-            System.out.println("Dice rolled: " + dice.getResult());
+            dice.rollDice();
+            System.out.println("Dice rolled: " + dice.getDice());
         }
     }
 }
