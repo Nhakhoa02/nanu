@@ -8,42 +8,21 @@
       fx:controller="bv.MVC.HomeScreenController" 
       spacing="20" 
       alignment="CENTER" 
-      style="-fx-background-color: linear-gradient(to bottom, #ffffff, #f5f5f5); 
-             -fx-padding: 40; 
-             -fx-border-radius: 12; 
-             -fx-background-radius: 12; 
-             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 2);">
+      styleClass="home-screen-container">
 
     <!-- Title -->
     <Label text="Welcome to Nanu!" 
-           style="-fx-font-size: 28px; 
-                  -fx-font-weight: bold; 
-                  -fx-text-fill: #333333; 
-                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.3, 0, 1);"/>
+           styleClass="home-screen-title"/>
 
     <!-- Start Game Button -->
     <Button text="Start Game" 
             fx:id="startGameButton" 
             onAction="#startGame" 
-            style="-fx-font-size: 16px; 
-                   -fx-font-weight: 600; 
-                   -fx-text-fill: white; 
-                   -fx-background-color: linear-gradient(to bottom, #007BFF, #0056b3); 
-                   -fx-border-radius: 8; 
-                   -fx-background-radius: 8; 
-                   -fx-padding: 10 20; 
-                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0.3, 0, 3);"/>
+            styleClass="button start-btn"/>
 
     <!-- Exit Button -->
     <Button text="Exit" 
             fx:id="exitButton" 
             onAction="#exitApp" 
-            style="-fx-font-size: 16px; 
-                   -fx-font-weight: 600; 
-                   -fx-text-fill: white; 
-                   -fx-background-color: linear-gradient(to bottom, #6c757d, #495057); 
-                   -fx-border-radius: 8; 
-                   -fx-background-radius: 8; 
-                   -fx-padding: 10 20; 
-                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0.3, 0, 3);"/>
+            styleClass="button exit-btn"/>
 </VBox>

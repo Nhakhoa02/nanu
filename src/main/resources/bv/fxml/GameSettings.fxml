@@ -6,28 +6,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="bv.MVC.GameSettingsController" spacing="10" alignment="CENTER">
-    <Label text="Game Settings" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="bv.MVC.GameSettingsController" spacing="10" alignment="CENTER" styleClass="game-settings-container">
+    <Label text="Game Settings" styleClass="game-settings-title"/>
 
     <!-- Number of Players -->
-    <Label text="Number of Players:"/>
-    <ChoiceBox fx:id="playerCountChoiceBox"/>
+    <Label text="Number of Players:" styleClass="label"/>
+    <ChoiceBox fx:id="playerCountChoiceBox" styleClass="choice-box"/>
 
     <!-- Number of Lids -->
-    <Label text="Number of Lids:"/>
-    <ChoiceBox fx:id="lidCountChoiceBox"/>
+    <Label text="Number of Lids:" styleClass="label"/>
+    <ChoiceBox fx:id="lidCountChoiceBox" styleClass="choice-box"/>
 
     <!-- Topic -->
-    <Label text="Select Topic:"/>
-    <ChoiceBox fx:id="topicChoiceBox"/>
+    <Label text="Select Topic:" styleClass="label"/>
+    <ChoiceBox fx:id="topicChoiceBox" styleClass="choice-box"/>
 
     <!-- Time Per Guess -->
-    <Label text="Time Per Guess (seconds):"/>
-    <TextField fx:id="timePerGuessTextField" promptText="Enter time (5-15)"/>
+    <Label text="Time Per Guess (seconds):" styleClass="label"/>
+    <TextField fx:id="timePerGuessTextField" promptText="Enter time (5-15)" styleClass="text-field"/>
 
     <!-- Action Buttons -->
-    
-    <Button text="Play Online" fx:id="playOnlineButton" onAction="#playOnline"/>
-    <Button text="Play Offline" fx:id="playOfflineButton" onAction="#playOffline"/>
-    <Button text="Cancel" fx:id="cancelButton" onAction="#cancel"/>
+    <Button text="Play Online" fx:id="playOnlineButton" onAction="#playOnline" styleClass="button play-btn"/>
+    <Button text="Play Offline" fx:id="playOfflineButton" onAction="#playOffline" styleClass="button play-btn"/>
+    <Button text="Cancel" fx:id="cancelButton" onAction="#cancel" styleClass="button cancel-btn"/>
 </VBox>
