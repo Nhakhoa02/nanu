@@ -18,12 +18,22 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        
+        // Load the HomeScreen.fxml file
         Parent root = FXMLLoader.load(getClass().getResource("/bv/fxml/HomeScreen.fxml"));
         System.out.println("Starting...");
 
+
+        // Create a new scene 1024 wide 600 height
         scene = new Scene(root, 1024, 600);
+
+        // Add the CSS file to the scene
         scene.getStylesheets().add(getClass().getResource("/bv/assets/style/style.css").toExternalForm());
+       
+        // Set the scene can be resized
         stage.setResizable(true);
+
+        // Apply these effects
         stage.setScene(scene);
         stage.setTitle("Nanu");
         stage.show();
