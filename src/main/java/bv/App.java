@@ -22,6 +22,7 @@ public class App extends Application {
         System.out.println("Starting...");
 
         scene = new Scene(root, 1024, 600);
+        scene.getStylesheets().add(getClass().getResource("/bv/assets/style/style.css").toExternalForm());
         stage.setResizable(true);
         stage.setScene(scene);
         stage.setTitle("Nanu");
