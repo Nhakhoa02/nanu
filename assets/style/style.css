@@ -1,0 +1,160 @@
+* {
+    -fx-font-family: 'Verdana', sans-serif; 
+    -fx-text-fill: #2c3e50; 
+    -fx-background-color: #f9f9f9; 
+}
+
+/* Game Settings Container */
+.game-settings-container {
+    -fx-spacing: 10px; 
+    -fx-alignment: center; 
+    -fx-padding: 20px;
+}
+
+/* Game Settings Title */
+.game-settings-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.3, 0, 1);
+}
+
+/* Basic label style */
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #666666;
+}
+
+/* Regular button */
+.button {
+    -fx-text-align: center;
+    -fx-font-size: 16px; 
+    -fx-background-color: #1abc9c;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-border-width: 2px;
+    -fx-border-color: #16a085;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+/* Button hover effect */
+.button:hover {
+    -fx-background-color: #16a085;
+    -fx-border-color: #1abc9c;
+    -fx-effect: dropshadow(gaussian, #16a085, 15, 0.5, 0, 0);
+}
+
+/* Big button */
+.bigBtn {
+    -fx-font-size: 20px;
+    -fx-text-align: center;
+    -fx-background-color: #e74c3c;
+    -fx-background-radius: 50px;
+    -fx-padding: 15px 40px;
+    -fx-effect: dropshadow(gaussian, #e74c3c, 10, 0.5, 0, 0);
+}
+
+/* Big button hover effect */
+.bigBtn:hover {
+    -fx-background-color: #c0392b;
+    -fx-effect: dropshadow(gaussian, #c0392b, 20, 0.7, 0, 0);
+}
+
+/* Text field (input box) */
+.text-field {
+    -fx-background-color: #fff;
+    -fx-background-radius: 20px;
+    -fx-pref-width: 300px;
+    -fx-pref-height: 45px;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 15px;
+    -fx-focus-color: #1abc9c;
+}
+
+/* Text field when focused */
+.text-field:focused {
+    -fx-border-color: #1abc9c;
+    -fx-background-color: #f0f8f7;
+}
+
+/* Dropdown - ComboBox */
+.combo-box {
+    -fx-background-color: #fff;
+    -fx-background-radius: 20px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 20px;
+    -fx-padding: 5px;
+}
+
+/* Leaderboard label */
+.leaderboard_label {
+    -fx-background-color: #ecf0f1;
+    -fx-border-radius: 10px;
+    -fx-padding: 5px;
+}
+
+/* Container styles for home screen */
+.home-screen-container {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f5f5f5);
+    -fx-padding: 40px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0.5, 0, 2);
+}
+
+/* Title on home screen */
+.home-screen-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.3, 0, 1);
+}
+
+/* Start button */
+.start-btn {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to bottom, #007BFF, #0056b3);
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0.3, 0, 3);
+}
+
+/* Exit button */
+.exit-btn {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to bottom, #6c757d, #495057);
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0.3, 0, 3);
+}
+
+/* Panel layout */
+.vbox, .hbox {
+    -fx-spacing: 15px; 
+    -fx-alignment: center;
+}
+
+/* GridPane layout */
+.grid-pane {
+    -fx-hgap: 10px;
+    -fx-vgap: 10px;
+}
+
+/* Pop-up notification styles */
+.alert {
+    -fx-background-color: #f39c12;
+    -fx-text-fill: white;
+    -fx-border-radius: 15px;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
