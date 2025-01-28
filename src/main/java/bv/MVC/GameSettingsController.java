@@ -81,6 +81,12 @@ public class GameSettingsController {
         System.out.println("Player Count: " + GameState.getNumPlayers());
         System.out.println("Time Per Guess: " + GameState.getNumTimePerGuess());
         System.out.println("Topic: " + GameState.getTopic());
+
+        try {
+            App.setRoot("GameScreen");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

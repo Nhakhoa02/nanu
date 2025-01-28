@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="bv.MVC.GameScreenController">
+    <!-- Top Section -->
+    <Top>
+        <VBox alignment="TOP_RIGHT" style="-fx-padding: 10;">
+            <Label text="Leaderboard" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            <ListView fx:id="leaderboardList" style="-fx-pref-height: 120;" />
+            <Button fx:id="menuSettingsButton" text="⚙" style="-fx-font-size: 14px;" onAction="#openSettingsMenu" />
+        </VBox>
+    </Top>
+
+    <!-- Center Section: Picture Table -->
+    <Center>
+        <GridPane fx:id="pictureGrid" alignment="CENTER" hgap="10" vgap="10">
+            <!-- Pictures will be dynamically loaded here -->
+        </GridPane>
+    </Center>
+
+    <!-- Bottom Section: Player Info -->
+    <Bottom>
+        <VBox alignment="CENTER" style="-fx-padding: 10;">
+            <!-- Player avatars and names will be added here dynamically -->
+            <HBox fx:id="playerBox" spacing="20" alignment="CENTER">
+                <!-- Player sections will be dynamically created here -->
+            </HBox>
+
+            <!-- Turn indicator and action buttons -->
+            <HBox spacing="10" alignment="CENTER" padding="10">
+                <Label fx:id="turnIndicator" text="Your Turn!" />
+                <Button fx:id="endTurnButton" text="End Turn" onAction="#endTurn" />
+                <Button fx:id="revealPictureButton" text="Reveal Picture" onAction="#revealPicture" />
+            </HBox>
+        </VBox>
+    </Bottom>
+</BorderPane>
