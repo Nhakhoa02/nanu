@@ -5,8 +5,8 @@ module bv {
     requires javafx.base;
 
     opens bv to javafx.fxml;
-    opens bv.MVC to javafx.fxml;
+    opens bv.Client.MVC to javafx.fxml;
     
     exports bv;
-    exports bv.MVC;
+    exports bv.Client.MVC;
 }

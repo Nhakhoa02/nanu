@@ -1,12 +1,12 @@
-package bv.MVC;
+package bv.Client.MVC;
 
 import bv.App;
-import bv.Model.GameState;
+import bv.Client.Model.GameState;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import bv.Model.GameState;
+import bv.Client.Model.GameState;
 
 public class GameSettingsController {
 

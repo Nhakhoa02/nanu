@@ -1,4 +1,4 @@
-package bv.MVC;
+package bv.Client.MVC;
 
 import bv.App;
 import javafx.fxml.FXML;

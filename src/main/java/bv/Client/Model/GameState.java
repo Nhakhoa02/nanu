@@ -1,4 +1,4 @@
-package bv.Model;
+package bv.Client.Model;
 
 public class GameState {
 

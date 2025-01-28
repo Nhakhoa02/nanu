@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="bv.MVC.GameSettingsController" spacing="10" alignment="CENTER" styleClass="game-settings-container">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="bv.Client.MVC.GameSettingsController" spacing="10" alignment="CENTER" styleClass="game-settings-container">
     <Label text="Game Settings" styleClass="game-settings-title"/>
 
     <!-- Number of Players -->
