@@ -1,4 +1,4 @@
-package bv.Client.Model;
+package ws2022.Client.Model;
 
 /**
  * The class that models a player in your game.

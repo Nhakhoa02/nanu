@@ -1,4 +1,7 @@
-package bv.Client.Model;
+package ws2022.Client.Model;
+
+import javafx.scene.control.Alert;
+import ws2022.Client.ViewController.SceneController;
 
 /**
  * PlayerManager is a class that manages the players in a game.
@@ -80,5 +83,28 @@ public class PlayerManager {
      * @param age  the age of the player
      * @return true if the name and age are valid, false otherwise
      */
-    
+    public boolean validateValue(String name, String age) {
+        SceneController sc = SceneController.getInstance();
+        if (name.isEmpty()) {
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Name Required!",
+                    "Please enter your name");
+            return false;
+        }
+        if (age == null) {
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Age Required!",
+                    "Please enter your age");
+            return false;
+        }
+        if (!age.matches("\\d+")) {
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Wrong format!",
+                    "Please enter your age again!");
+            return false;
+        }
+        if (Integer.parseInt(age) > 100) {
+            sc.showAlertMessage(Alert.AlertType.ERROR, "Wrong logic!",
+                    "Please another age! Why you are so old?");
+            return false;
+        }
+        return true;
+    }
 }

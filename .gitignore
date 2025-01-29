@@ -1,0 +1,7 @@
+*.class
+target/
+.idea/
+.project
+.vscode
+# Server/
+.settings

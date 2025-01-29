@@ -13,9 +13,9 @@ import java.util.Random;
 
 public class GameLogic {
     /**
-     * The list of Lid in the game.
+     * The list of discs in the game.
      */
-    public ArrayList<Lid> myList = new ArrayList<>();
+    public ArrayList<Disc> myList = new ArrayList<>();
 
     /**
      * The list of picture names in the game.
@@ -28,24 +28,24 @@ public class GameLogic {
     public HashMap<String, Integer> coverHashMap = new HashMap<>();
 
     /**
-     * The total number of Lidss in the game.
+     * The total number of discs in the game.
      */
-    public int totalLids = 24;
+    public int totalDisc = 24;
 
     /**
-     * The color of the current Lids.
+     * The color of the current disc.
      */
     public String COLOR;
 
     /**
-     * Indicates whether the Lids has been changed.
+     * Indicates whether the disc has been changed.
      */
-    public boolean isChangeLid = false;
+    public boolean isChangeDisc = false;
 
     /**
      * The theme of the game.
      */
-    public String theme = "Animal";
+    public String theme = "Football";
 
     /**
      * Sets up the covers for the game.
@@ -57,7 +57,7 @@ public class GameLogic {
         int count = 0;
         while (count < Dice.numDice) {
             Random random = new Random();
-            int indexList = random.nextInt(totalLids);
+            int indexList = random.nextInt(totalDisc);
             if (myList.get(indexList).checkCover())
                 continue;
             myList.get(indexList).setCover();
@@ -80,9 +80,9 @@ public class GameLogic {
     }
 
     /**
-     * Returns the value of the current Lids.
+     * Returns the value of the current disc.
      * 
-     * @return the value of the current Lids
+     * @return the value of the current disc
      */
     public String getAnswer() {
         return myList.get(coverHashMap.get(COLOR)).getValue();
@@ -104,9 +104,9 @@ public class GameLogic {
     }
 
     /**
-     * Returns the image for the current Lids.
+     * Returns the image for the current disc.
      * 
-     * @return the image for the current Lids
+     * @return the image for the current disc
      */
     public String getCardImage() {
         return myList.get(coverHashMap.get(COLOR)).getCardImage();

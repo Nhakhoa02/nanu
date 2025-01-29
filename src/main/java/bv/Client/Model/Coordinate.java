@@ -1,4 +1,4 @@
-package bv.Client.Model;
+package ws2022.Client.Model;
 
 /**
  * Coordinate class represents a coordinate in a 2D grid.

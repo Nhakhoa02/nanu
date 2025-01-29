@@ -1,0 +1,55 @@
+* {
+  -fx-font-family: 'Helvetica', Arial, sans-serif;
+  -fx-text-fill: black; /* Change text color to white for better contrast */
+}
+
+/* Regular button - Kim */
+.button {  
+  -fx-text-align: center;
+  -fx-font-size: 15pt;
+  
+  -fx-background-color: rgba(50, 50, 50, 0.6); /* Dark background */
+  -fx-background-radius: 15px;
+   
+  -fx-border-radius: 15px;
+  -fx-border-width: 1px;
+  -fx-border-color: #FFFFFF; /* White border for contrast */
+}
+
+/* Table cell - Kim */
+.leaderboard_label {
+  -fx-background-color: #333333; /* Dark gray background */
+}
+
+/* Big button - Ngoc */
+.bigBtn {  
+   -fx-font-size: 32px;
+   -fx-text-align: center;
+
+   -fx-background-color: rgba(80, 80, 80, 1); /* Slightly lighter dark gray */
+   -fx-background-radius: 20px;
+   -fx-background-size: 350px 65px;
+   -fx-border-color: rgba(120, 120, 120, 1); /* Medium gray border */
+   -fx-effect: dropshadow(two-pass-box, rgba(0, 0, 0, 0.6), 50, 0, 0, 0); /* Subtle shadow effect */
+}
+
+/* Choice Box - Ngoc */
+.combo-box {
+  -fx-background-color: rgba(50, 50, 50, 0.8); /* Dark background */
+  -fx-background-radius: 20px;
+  -fx-padding: 0.0 10.0 0.0 0.0;
+}
+
+/* Text field */
+.text-field {
+  -fx-background-radius: 20px;
+  -fx-background-color: rgba(40, 40, 40, 1); /* Very dark gray background */
+  -fx-pref-width: 300px;
+  -fx-pref-height: 50px;
+  -fx-text-fill: white; /* White text for contrast */
+}
+
+/* Container */
+.container {
+  -fx-background-color: #222222; /* Dark background for container */
+}

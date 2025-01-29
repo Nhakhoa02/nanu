@@ -4,13 +4,20 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import bv.Client.Model.GameManager;
 
 import java.io.IOException;
 
 /**
- * JavaFX App
+ * The App class extends the javafx.application.Application class and serves as
+ * the main class for the application.
  * 
+ * It sets up the primary stage and scene of the application using JavaFX FXML,
+ * loads the HomeScreen.fxml file, and sets the stage's title to "Nanu".
+ * 
+ * It also sets the stage in the GameManager class for further use.
  */
 public class App extends Application {
 
@@ -18,37 +25,16 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        
-        // Load the HomeScreen.fxml file
         Parent root = FXMLLoader.load(getClass().getResource("/bv/fxml/HomeScreen.fxml"));
         System.out.println("Starting...");
 
-
-        // Create a new scene 1024 wide 600 height
-        scene = new Scene(root, 1024, 600);
-
-        // Add the CSS file to the scene
-        scene.getStylesheets().add(getClass().getResource("/bv/assets/style/style.css").toExternalForm());
-       
-        // Set the scene can be resized
-        stage.setResizable(true);
-
-        // Apply these effects
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Nanu");
+        GameManager.stage = stage;
+        stage.setScene(scene);
         stage.show();
     }
-
-    public static void setRoot(String fxml) throws IOException {
-        // Change the root of the scene dynamically
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/bv/fxml/" + fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
-
     public static void main(String[] args) {
         launch();
     }
