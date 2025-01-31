@@ -1,4 +1,4 @@
-package ws2022.Server;
+package bv.Server;
 
 /**
  * 

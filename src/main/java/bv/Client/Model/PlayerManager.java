@@ -1,7 +1,7 @@
-package ws2022.Client.Model;
+package bv.Client.Model;
 
 import javafx.scene.control.Alert;
-import ws2022.Client.ViewController.SceneController;
+import bv.Client.ViewController.SceneController;
 
 /**
  * PlayerManager is a class that manages the players in a game.

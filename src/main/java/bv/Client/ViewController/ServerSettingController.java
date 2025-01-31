@@ -1,4 +1,4 @@
-package ws2022.Client.ViewController;
+package bv.Client.ViewController;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,10 +14,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
-import ws2022.Client.Model.Dice;
-import ws2022.Client.Model.GameManager;
-import ws2022.Server.Server;
-import ws2022.Server.ServerThread;
+import bv.Client.Model.Dice;
+import bv.Client.Model.GameManager;
+import bv.Server.Server;
+import bv.Server.ServerThread;
 
 /**
  * The ServerSettingController class is responsible for handling the server-side

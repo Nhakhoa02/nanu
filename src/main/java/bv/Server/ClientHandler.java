@@ -1,4 +1,4 @@
-package ws2022.Server;
+package bv.Server;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,14 +10,14 @@ import java.util.ArrayList;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
-import ws2022.Client.Model.Coordinate;
-import ws2022.Client.Model.Dice;
-import ws2022.Client.Model.Disc;
-import ws2022.Client.Model.GameManager;
-import ws2022.Client.Model.Player;
-import ws2022.Client.ViewController.SceneController;
-import ws2022.Middleware.API;
-import ws2022.Middleware.API.Type;
+import bv.Client.Model.Coordinate;
+import bv.Client.Model.Dice;
+import bv.Client.Model.Disc;
+import bv.Client.Model.GameManager;
+import bv.Client.Model.Player;
+import bv.Client.ViewController.SceneController;
+import bv.Middleware.API;
+import bv.Middleware.API.Type;
 
 /**
  * The ClientHandler class implements the Runnable interface to handle

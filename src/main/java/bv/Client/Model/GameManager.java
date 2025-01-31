@@ -1,14 +1,14 @@
-package ws2022.Client.Model;
+package bv.Client.Model;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import javafx.stage.Stage;
-import ws2022.Client.Client;
-import ws2022.Client.ViewController.BoardGameController;
-import ws2022.Client.ViewController.SceneController;
-import ws2022.Client.utils.GenerateData;
+import bv.Client.Client;
+import bv.Client.ViewController.BoardGameController;
+import bv.Client.ViewController.SceneController;
+import bv.Client.utils.GenerateData;
 
 /**
  * The GameManager class is responsible for managing game states and data

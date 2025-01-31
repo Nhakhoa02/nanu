@@ -1,9 +1,9 @@
-package ws2022.Client.utils;
+package bv.Client.utils;
 
 import java.util.ArrayList;
 
-import ws2022.Client.Model.Disc;
-import ws2022.Client.Model.GameManager;
+import bv.Client.Model.Disc;
+import bv.Client.Model.GameManager;
 
 /**
  * GenerateData is a utility class that generates data for a theme in a game.
@@ -103,7 +103,7 @@ public class GenerateData {
     };
 
     public static void generateDataForFolder() {
-        // File directory = new File("target/classes/ws2022/assets/Theme/" +
+        // File directory = new File("target/classes/bv/assets/Theme/" +
         // GameManager.gameLogic.theme);
         // Images = directory.list();
 
