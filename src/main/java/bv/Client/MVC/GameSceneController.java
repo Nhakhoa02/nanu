@@ -386,7 +386,7 @@ public class GameSceneController {
      */
     public void getJoker() {
         // display dice image
-        String diceImage = "/bv/assets/Dice/Joker.png";
+        String diceImage = "/bv/assets/Dice/Joker.jpg";
         Image cover = new Image(this.getClass()
                 .getResource(diceImage)
                 .toExternalForm());

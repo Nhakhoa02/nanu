@@ -7,7 +7,7 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bv.Client.MVC.HomeScreenController">
    <children>
-      <Label layoutX="490.0" layoutY="48.0" text="NANU" textFill="black">
+      <Label layoutX="150.0" layoutY="200.0" text="NANU" textFill="black">
          <font>
             <Font name="System Bold Italic" size="81.0" />
          </font>

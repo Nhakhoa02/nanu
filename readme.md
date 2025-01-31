@@ -17,21 +17,21 @@ In this repository, we created the java game based on the original nanu game. We
 
 ## Folder stucture:
 
-- [FXML](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/resources/bv/fxml): Stores our fxml for UI
-- [MVC](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/java/bv/Client/MVC): Stores our java file to manage the user interaction with our game
-- [Model](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/java/bv/Client/Model): Defines how data is created, stored, and changed
-- [Server](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/java/bv/Server) and [Middleware](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/java/bv/Middleware): Stores the code for online game
-- [assets](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/resources/bv/assets): Stores the resources like images, sound ...
+- [FXML](https://github.com/TomNewbie/nanu/tree/main/src/main/resources/bv/fxml): Stores our fxml for UI
+- [MVC](https://github.com/TomNewbie/nanu/tree/main/src/main/java/bv/Client/MVC): Stores our java file to manage the user interaction with our game
+- [Model](https://github.com/TomNewbie/nanu/tree/main/src/main/java/bv/Client/Model): Defines how data is created, stored, and changed
+- [Server](https://github.com/TomNewbie/nanu/tree/main/src/main/java/bv/Server) and [Middleware](https://github.com/TomNewbie/nanu/tree/main/src/main/java/bv/Middleware): Stores the code for online game
+- [assets](https://github.com/TomNewbie/nanu/tree/main/src/main/resources/bv/assets): Stores the resources like images, sound ...
 
 ## How to play the game
 
-To play the game you need to install JDK to run the Java Program. The JAR file can be found in [Here](https://github.com/TomNewbie/java-nanu-project/blob/main/java-nanu-project-1.0-SNAPSHOT.jar)
+To play the game you need to install JDK to run the Java Program. The JAR file can be found in [Here](https://github.com/TomNewbie/nanu/blob/main/nanu-1.0-SNAPSHOT.jar)
 
 ## Additional documents
 
 The inspiration for our application is [Here](https://campuas.frankfurt-university.de/pluginfile.php/207336/mod_resource/content/1/Nanu.pdf). You can watch the original game [here-Deutsch](https://www.youtube.com/watch?v=A_bEx2lpkmo) or [here-English](https://www.youtube.com/watch?v=dkwNihodVnw).
 
-For more information, you can read the documents about our application here [pdf](https://github.com/TomNewbie/java-nanu-project/blob/main/report/Project_report.pdf).
+For more information, you can read the documents about our application here [pdf](https://github.com/TomNewbie/nanu/blob/main/report/Project_report.pdf).
 
 ## Authors
 
