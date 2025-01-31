@@ -33,7 +33,7 @@
             <Font name="System Bold" size="45.0" />
          </font>
       </Label>
-      <Button fx:id="returnButton" cancelButton="true" layoutX="26.0" layoutY="19.0" mnemonicParsing="false" onAction="#enterProfile1" prefHeight="60.0" prefWidth="150.0" text="Return">
+      <Button fx:id="returnButton" cancelButton="true" layoutX="1050.0" layoutY="10.0" mnemonicParsing="false" onAction="#enterProfile1" prefHeight="60.0" prefWidth="150.0" text="Return">
          <font>
             <Font size="15.0" />
          </font>

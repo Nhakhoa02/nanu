@@ -55,10 +55,15 @@
             <Font size="28.0" />
          </font>
       </Text>
-      <Text fx:id="player2Score" fill="RED" layoutX="1067.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score">
+      <Text fx:id="player2Score" fill="RED" layoutX="1067.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
          <font>
             <Font size="28.0" />
          </font>
       </Text>
+      <Button fx:id="returnButton" cancelButton="true" layoutX="1200.0" layoutY="19.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="60.0" prefWidth="150.0" text="Quit">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

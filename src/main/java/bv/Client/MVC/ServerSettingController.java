@@ -87,7 +87,7 @@ public class ServerSettingController {
      */
     public void displayThemes() {
 
-        String[] themes = { "default", "sport" };
+        String[] themes = { "default", "sport", "animal" };
         theme.getItems().addAll(themes);
     }
 

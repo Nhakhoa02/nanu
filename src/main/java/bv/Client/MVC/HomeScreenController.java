@@ -16,10 +16,10 @@ import javafx.stage.Stage;
  * the home screen of the application.
  *
  * It has four buttons to represent the user's choices: play offline, play
- * online, quit, and manual.
+ * online, quit, and setting.
  * 
- * The class has four methods, playOffline(), playOnline(), quit(), and
- * manualPage(), to handle the button events and navigate to the corresponding
+ * The class has three methods, playOffline(), playOnline(), quit(), and
+ * to handle the button events and navigate to the corresponding
  * screens.
  *
  * The class also has two instance variables, sc and soundc, for accessing
@@ -51,16 +51,6 @@ public class HomeScreenController {
     Stage stage;
     Scene scene;
     Parent root;
-
-    public void manualPage(ActionEvent event) throws IOException {
-        soundc.click();
-        Parent root = FXMLLoader.load(getClass().getResource("/bv/fxml/ManualOptions.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public void setting(ActionEvent event) throws IOException {
         soundc.click();

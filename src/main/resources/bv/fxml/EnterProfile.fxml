@@ -12,7 +12,7 @@
          <font>
             <Font size="20.0" />
          </font></TextField>
-      <Button alignment="CENTER" layoutX="466.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToProfile2" prefHeight="60.0" prefWidth="250.0" text="Next">
+      <Button alignment="CENTER" layoutX="466.0" layoutY="500.0" mnemonicParsing="false" onAction="#goToProfile2" prefHeight="60.0" prefWidth="250.0" text="Next">
          <font>
             <Font size="15.0" />
          </font></Button>
@@ -31,7 +31,7 @@
             <Font name="System Bold" size="45.0" />
          </font>
       </Label>
-      <Button fx:id="returnButton" cancelButton="true" layoutX="26.0" layoutY="19.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="60.0" prefWidth="150.0" text="Return">
+      <Button fx:id="returnButton" cancelButton="true" layoutX="1050.0" layoutY="10.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="60.0" prefWidth="150.0" text="Return">
          <font>
             <Font size="15.0" />
          </font></Button>

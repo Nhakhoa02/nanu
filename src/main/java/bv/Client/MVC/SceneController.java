@@ -67,16 +67,6 @@ public class SceneController {
         stage.show();
     }
 
-    @FXML
-    public void gotomanualpage(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/bv/fxml/ManualPage.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void homeScreen(ActionEvent event) throws IOException {
         createScene(event, "HomeScreen");
     }

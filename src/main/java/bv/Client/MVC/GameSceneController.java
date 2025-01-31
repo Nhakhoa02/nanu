@@ -83,6 +83,11 @@ public class GameSceneController {
     @FXML
     Label countdown; // for online
 
+    public void returnHome(ActionEvent event) throws IOException {
+        soundc.click();
+        sc.homeScreen(event);
+    }
+
     /**
      * The initialize method sets up the game board and populates it with pieces.
      * It also sets the player names and scores and starts the countdown timer if

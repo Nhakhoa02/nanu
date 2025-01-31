@@ -21,7 +21,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="A" layoutX="33.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnBtn" prefHeight="50.0" prefWidth="150.0" text="Return" />
+      <Button fx:id="A" layoutX="1050.0" layoutY="20.0" mnemonicParsing="false" onAction="#returnBtn" prefHeight="50.0" prefWidth="150.0" text="Return" />
       <TextField fx:id="ageTF" layoutX="474.0" layoutY="346.0" prefHeight="50.0" prefWidth="207.0" />
       <Label layoutX="309.0" layoutY="430.0" text="Server:">
          <font>
