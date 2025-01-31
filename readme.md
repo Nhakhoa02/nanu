@@ -35,8 +35,3 @@ For more information, you can read the documents about our application here [pdf
 
 ## Authors
 
-- [Tho Phan Chi](https://github.com/TomNewbie)
-- [Thanh Le Hoang Kim](https://github.com/Kimthanh11)
-- [Ferid Gökkaya](https://github.com/ferid99)
-- [Kim Tran Hoang](https://github.com/HoangKim1504)
-- [Ngoc Pham Nhu](https://github.com/PhamNhuNgoc)
