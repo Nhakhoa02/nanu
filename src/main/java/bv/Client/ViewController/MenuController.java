@@ -57,7 +57,7 @@ public class MenuController {
     public void displayThemes() {
 
         // Creates an array in which we will store the names of files and directories
-        String[] themes = { "Classic", "Football" };
+        String[] themes = { "default", "sport" };
         // File directory = new File("target/classes/bv/assets/Theme");
         // pathnames = directory.list();
 

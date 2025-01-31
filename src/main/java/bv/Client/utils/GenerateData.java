@@ -1,5 +1,6 @@
 package bv.Client.utils;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import bv.Client.Model.Disc;
@@ -19,110 +20,37 @@ import bv.Client.Model.GameManager;
 public class GenerateData {
     public static String[] Images;
     public static String[] Values = new String[24];
-    public static String[] FootballImages = { "Argentina.png", "Australia.png", "Belgium.png", "Brazil.png",
-            "Cameroon.png", "Canada.png", "CostaRica.png", "Croatia.png", "Denmark.png", "Ecuador.png", "England.png",
-            "France.png", "Germany.png", "ghana.png", "Iran.png", "Japan.png", "Korea.png", "Mexico.png",
-            "Netherland.png", "Poland.png", "Portugal.png", "Qatar.png", "SaudiArabia.png", "Senegal.png" };
-    public static String[] FootballValues = {
-            "Argentina",
-            "Australia",
-            "Belgium",
-            "Brazil",
-            "Cameroon",
-            "Canada",
-            "Costa Rica",
-            "Croatia",
-            "Denmark",
-            "Ecuador",
-            "England",
-            "France",
-            "Germany",
-            "Ghana",
-            "Iran",
-            "Japan",
-            "Korea",
-            "Mexico",
-            "Netherland",
-            "Poland",
-            "Portugal",
-            "Qatar",
-            "Saudi Arabia",
-            "Senegal",
-    };
-    public static String[] ClassicValues = {
-            "Buzz Lightyear",
-            "Balloon",
-            "Bike",
-            "Cherry",
-            "Crown",
-            "Cup",
-            "Dog",
-            "Drum",
-            "Earth",
-            "Fish",
-            "Horse",
-            "Mill",
-            "Minion",
-            "New Car",
-            "Pen",
-            "Phone",
-            "Plane",
-            "Radio",
-            "Robot",
-            "Rubber Duck",
-            "Snail",
-            "Snake",
-            "Spongebob",
-            "Star",
-    };
-    public static String[] ClassicImages = {
-            "astronaut.jpg",
-            "balloon.jpg",
-            "bike.png",
-            "cherry.jpg",
-            "crown.jpg",
-            "cup.jpg",
-            "dog.jpg",
-            "drum.jpg",
-            "earth.jpg",
-            "fish.jpg",
-            "hourse.jpg",
-            "mill.jpg",
-            "minion.jpg",
-            "newcar.jpg",
-            "pen.jpg",
-            "phone.jpg",
-            "plane.jpg",
-            "radio.jpg",
-            "robot.jpg",
-            "rubberDuck.jpg",
-            "schnecke.jpg",
-            "snake.jpg",
-            "spongebob.jpg",
-            "star.jpg",
-    };
 
     public static void generateDataForFolder() {
-        // File directory = new File("target/classes/bv/assets/Theme/" +
-        // GameManager.gameLogic.theme);
-        // Images = directory.list();
+        String theme = GameManager.gameLogic.theme; // Get theme dynamically
+        String folderPath = "src/main/resources/bv/assets/Theme/" + theme;
+        File directory = new File(folderPath);
 
-        // for (int i = 0; i < Values.length; i++) {
-        // String temp = Images[i].substring(0, Images[i].length() - 4); // remove .jpg,
-        // .png
-        // String[] temp1 = temp.split("(?=\\p{Lu})"); // split when uppercase to array
-        // temp = Arrays.toString(temp1); // array concat to string
-        // Values[i] = temp.replaceAll("[^a-zA-Z0-9\\s+]", ""); // remove all special
-        // character except blank space
-        // }
-        if (GameManager.gameLogic.theme == "Football") {
-            Images = FootballImages;
-            Values = FootballValues;
-        } else if (GameManager.gameLogic.theme == "Classic") {
-            Images = ClassicImages;
-            Values = ClassicValues;
+        if (directory.exists() && directory.isDirectory()) {
+            File[] files = directory.listFiles((dir, name) -> name.endsWith(".png") || name.endsWith(".jpg"));
+            
+            if (files != null && files.length > 0) {
+                Images = new String[files.length];
+                Values = new String[files.length];
+
+                for (int i = 0; i < files.length; i++) {
+                    Images[i] = files[i].getName(); // Store file name
+                    Values[i] = formatFileName(files[i].getName()); // Processed name
+                }
+            }
+        } else {
+            System.out.println("Folder not found: " + folderPath);
         }
+    }
 
+    private static String formatFileName(String fileName) {
+        // Remove file extension (.png, .jpg)
+        String nameWithoutExtension = fileName.replaceAll("\\.[^.]*$", "");
+
+        // Insert spaces before uppercase letters
+        String formattedName = nameWithoutExtension.replaceAll("(?<!^)(?=[A-Z])", " ");
+
+        return formattedName;
     }
 
     public static void generateDisc(ArrayList<Disc> discArray) {

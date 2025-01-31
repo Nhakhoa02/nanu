@@ -58,7 +58,7 @@ public class SoundController implements Initializable {
      * Plays the sound for a correct answer.
      */
     public void correctAnswer() {
-        String path = "/bv/sound/correctanswer.mp3";
+        String path = "/bv/sound/answer_correct.mp3";
         playSound(path);
     }
 
@@ -67,7 +67,7 @@ public class SoundController implements Initializable {
      * Plays the sound for a dice roll.
      */
     public void dice() {
-        String path = "/bv/sound/dice.mp3";
+        String path = "/bv/sound/dice_roll.mp3";
         playSound(path);
     }
 
@@ -85,7 +85,7 @@ public class SoundController implements Initializable {
      * Plays the sound for losing the game.
      */
     public void lose() {
-        String path = "/bv/sound/losegame.mp3";
+        String path = "/bv/sound/game_lost.mp3";
         playSound(path);
     }
 
@@ -94,7 +94,7 @@ public class SoundController implements Initializable {
      * Plays the sound for a wrong answer.
      */
     public void wrongAnswer() {
-        String path = "/bv/sound/wronganswer.mp3";
+        String path = "/bv/sound/answer_wrong.mp3";
         playSound(path);
     }
 
@@ -103,7 +103,7 @@ public class SoundController implements Initializable {
      * Plays the sound for a keyboard press.
      */
     public void presskeyboard() {
-        String path = "/bv/sound/presskeyboard.mp3";
+        String path = "/bv/sound/enter_word.mp3";
         playSound(path);
     }
 
@@ -112,7 +112,7 @@ public class SoundController implements Initializable {
      * Plays the sound for winning the game.
      */
     public void victory() {
-        String path = "/bv/sound/victory.mp3";
+        String path = "/bv/sound/game_win.mp3";
         playSound(path);
     }
 
