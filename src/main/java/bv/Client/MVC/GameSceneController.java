@@ -1,4 +1,4 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import javafx.util.Duration;
 
@@ -23,9 +23,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import bv.Client.Model.Coordinate;
+import bv.Client.Model.Pos;
 import bv.Client.Model.Dice;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 import bv.Middleware.API;
 
 import java.io.FileNotFoundException;
@@ -34,21 +34,21 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 
 /**
- * BoardGameController is the main class for handling the board game UI.
+ * GameSceneController is the main class for handling the board game UI.
  * It has several private instance variables and public instance variables to
  * represent the various components of the game UI.
  * 
  * The class has a private constructor to ensure only one instance of the class
  * can exist at any time, and a public static method to retrieve the instance.
  */
-public class BoardGameController {
-    private static BoardGameController bgc = new BoardGameController();
+public class GameSceneController {
+    private static GameSceneController bgc = new GameSceneController();
     public Stage popUpStage;
 
-    private BoardGameController() {
+    private GameSceneController() {
     }
 
-    public static BoardGameController getInstance() {
+    public static GameSceneController getInstance() {
         return bgc;
     }
 
@@ -79,7 +79,7 @@ public class BoardGameController {
     private HashMap<String, ImageView> hashMapImageView = new HashMap<>();
     private HashMap<String, ImageView> hashMapPicture = new HashMap<>();
     SoundController soundc = new SoundController();
-    public Coordinate[] coverCoords = new Coordinate[5];
+    public Pos[] coverCoords = new Pos[5];
     @FXML
     Label countdown; // for online
 
@@ -97,8 +97,8 @@ public class BoardGameController {
             for (int x = 0; x < 7; x++) {
                 if (x != 0 && y != 0 && x != 6 && y != 6)
                     continue;
-                String selectedImage = "/bv/assets/Theme/" + GameManager.gameLogic.theme + "/"
-                        + GameManager.gameLogic.myList.get(index).getImage();
+                String selectedImage = "/bv/assets/Theme/" + GameState.gameLogic.theme + "/"
+                        + GameState.gameLogic.myList.get(index).getImage();
                 Image image = new Image(this.getClass()
                         .getResource(selectedImage)
                         .toExternalForm());
@@ -110,19 +110,19 @@ public class BoardGameController {
                 imageView.setFitHeight(100);
                 imageView.setClip(clip);
                 imageView.setOnMouseClicked(event -> changeDisc(event));
-                imageView.setUserData(new Coordinate(x, y)); // index data
-                hashMapPicture.put(GameManager.gameLogic.myList.get(index).getValue(), imageView);
+                imageView.setUserData(new Pos(x, y)); // index data
+                hashMapPicture.put(GameState.gameLogic.myList.get(index).getValue(), imageView);
                 boardgame.add(imageView, x, y);
-                // System.out.println(GameManager.myList.get(index).getImage());
+                // System.out.println(GameState.myList.get(index).getImage());
                 index++;
             }
         }
-        player1.setText(GameManager.playerManager.PLAYER1.getName());
-        player1Score.setText("" + GameManager.playerManager.PLAYER1.getScore());
-        player2.setText(GameManager.playerManager.PLAYER2.getName());
-        player2Score.setText("" + GameManager.playerManager.PLAYER1.getScore());
-        if (GameManager.isOnline) {
-            countdown.setText("00:" + GameManager.countDownTimer);
+        player1.setText(GameState.Players.PLAYER1.getName());
+        player1Score.setText("" + GameState.Players.PLAYER1.getScore());
+        player2.setText(GameState.Players.PLAYER2.getName());
+        player2Score.setText("" + GameState.Players.PLAYER1.getScore());
+        if (GameState.isOnline) {
+            countdown.setText("00:" + GameState.countDownTimer);
             countdownTimer();
         }
     }
@@ -138,21 +138,21 @@ public class BoardGameController {
         if (message != null)
             message.setVisible(false);
         if (isPlayer1Turn) {
-            status.setText("Player " + GameManager.playerManager.PLAYER1.getName() + " turn: ");
+            status.setText("Player " + GameState.Players.PLAYER1.getName() + " turn: ");
             return;
         }
         // Player 2 turn
-        status.setText("Player " + GameManager.playerManager.PLAYER2.getName() + " turn: ");
-        if (GameManager.isOnline) {
+        status.setText("Player " + GameState.Players.PLAYER2.getName() + " turn: ");
+        if (GameState.isOnline) {
             message.setVisible(true);
-            message.setText("Waiting player " + GameManager.playerManager.PLAYER2.getName() + " to roll dice");
+            message.setText("Waiting player " + GameState.Players.PLAYER2.getName() + " to roll dice");
         }
     }
 
     /**
      * Starts a countdown timer and displays it in the countdown field.
      *
-     * The timer counts down from a given time (in GameManager.countDownTimer) and
+     * The timer counts down from a given time (in GameState.countDownTimer) and
      * stops at 0.
      * When the timer reaches 0, the `clickRememberAll` method is called.
      */
@@ -169,9 +169,9 @@ public class BoardGameController {
             @Override
             public void handle(ActionEvent event) {
                 // TODO Auto-generated method stub
-                GameManager.countDownTimer--;
-                countdown.setText("00:" + dFormat.format(GameManager.countDownTimer));
-                if (GameManager.countDownTimer <= 0) {
+                GameState.countDownTimer--;
+                countdown.setText("00:" + dFormat.format(GameState.countDownTimer));
+                if (GameState.countDownTimer <= 0) {
                     time.stop();
                     countdown.setVisible(false);
                     try {
@@ -189,30 +189,30 @@ public class BoardGameController {
     }
 
     /**
-     * Adds an image as a cover to a specified coordinate on the board.
+     * Adds an image as a cover to a specified Pos on the board.
      *
      * @param selectedImage The path of the image file to be added as a cover.
-     * @param coord         The coordinate on the board where the cover will be
+     * @param coord         The Pos on the board where the cover will be
      *                      placed.
      * @param color         The color of the cover, used for identification.
      */
-    public void putCover(String selectedImage, Coordinate coord, String color) {
+    public void putCover(String selectedImage, Pos coord, String color) {
         Image image = new Image(this.getClass().getResource(selectedImage).toExternalForm());
         Circle clip = new Circle(50, 50, 45);
         ImageView imageView = new ImageView(image);
 
         int x = coord.getColumn();
         int y = coord.getRow();
-        int index = Coordinate.convertToIndex(coord);
+        int index = Pos.convertToIndex(coord);
         if (index == -1) {
             System.out.println("there is something wrong with putCover");
             return;
         }
 
-        if (GameManager.gameLogic.coverHashMap.get(color) == null) {
-            GameManager.gameLogic.coverHashMap.put(color, index);
+        if (GameState.gameLogic.coverHashMap.get(color) == null) {
+            GameState.gameLogic.coverHashMap.put(color, index);
         } else {
-            GameManager.gameLogic.coverHashMap.replace(color, index);
+            GameState.gameLogic.coverHashMap.replace(color, index);
         }
 
         imageView.setFitWidth(100);
@@ -224,9 +224,9 @@ public class BoardGameController {
     }
 
     public void deleteCover() {
-        // deleteCover by coordinate
-        boardgame.getChildren().remove(hashMapImageView.get(GameManager.gameLogic.COLOR));
-        boardgame.getChildren().remove(hashMapPicture.get(GameManager.getAnswer()));
+        // deleteCover by Pos
+        boardgame.getChildren().remove(hashMapImageView.get(GameState.gameLogic.COLOR));
+        boardgame.getChildren().remove(hashMapPicture.get(GameState.getAnswer()));
     }
 
     /**
@@ -240,19 +240,19 @@ public class BoardGameController {
      */
     @FXML
     public void clickRememberAll() throws IOException {
-        if (!GameManager.isOnline) {
+        if (!GameState.isOnline) {
             soundc.click();
-            coverCoords = GameManager.gameLogic.setUpCover();
-            GameManager.playerManager.getFirstTurn();
+            coverCoords = GameState.gameLogic.setUpCover();
+            GameState.Players.getFirstTurn();
             boardgame.getChildren().remove(myButton);
             createRollDiceBtn();
         }
         for (int count = 0; count < Dice.numDice; count++) {
-            String selectedImage = "/bv/assets/Covers/" + GameManager.gameLogic.colorImage[count] + ".png";
-            putCover(selectedImage, coverCoords[count], GameManager.gameLogic.colorImage[count]);
+            String selectedImage = "/bv/assets/Covers/" + GameState.gameLogic.colorImage[count] + ".png";
+            putCover(selectedImage, coverCoords[count], GameState.gameLogic.colorImage[count]);
         }
-        setTurn(GameManager.playerManager.checkIsPlayer1Turn());
-        if (GameManager.playerManager.checkIsPlayer1Turn() && GameManager.isOnline) {
+        setTurn(GameState.Players.checkIsPlayer1Turn());
+        if (GameState.Players.checkIsPlayer1Turn() && GameState.isOnline) {
             createRollDiceBtn();
         }
     }
@@ -282,8 +282,8 @@ public class BoardGameController {
         rollDice.setPrefWidth(297);
         rollDice.setOnAction(event -> {
             try {
-                if (GameManager.isOnline) {
-                    GameManager.client.requestDice();
+                if (GameState.isOnline) {
+                    GameState.client.requestDice();
                     return;
                 }
                 clickRollDice();
@@ -310,10 +310,10 @@ public class BoardGameController {
      */
     public void clickRollDice() throws IOException {
         soundc.click();
-        if (!GameManager.isOnline) {
-            GameManager.gameLogic.COLOR = Dice.rollDice();
+        if (!GameState.isOnline) {
+            GameState.gameLogic.COLOR = Dice.rollDice();
         }
-        if (GameManager.gameLogic.COLOR.equals("joker")) {
+        if (GameState.gameLogic.COLOR.equals("joker")) {
             soundc.joker();
             getJoker();
         } else {
@@ -331,7 +331,7 @@ public class BoardGameController {
      */
     public void getNormalColor() {
         // display cover has been generated by roll dice
-        String coverImage = "/bv/assets/Covers/" + GameManager.gameLogic.COLOR + ".png";
+        String coverImage = "/bv/assets/Covers/" + GameState.gameLogic.COLOR + ".png";
         Image cover = new Image(this.getClass()
                 .getResource(coverImage)
                 .toExternalForm());
@@ -355,8 +355,8 @@ public class BoardGameController {
                 popupwindow.initModality(Modality.APPLICATION_MODAL);
                 popupwindow.setTitle("Choose your option");
 
-                popupwindow.setY(GameManager.stage.getY() + GameManager.stage.getHeight() / 3.5);
-                popupwindow.setX(GameManager.stage.getX() + GameManager.stage.getWidth() / 7.75);
+                popupwindow.setY(GameState.stage.getY() + GameState.stage.getHeight() / 3.5);
+                popupwindow.setX(GameState.stage.getX() + GameState.stage.getWidth() / 7.75);
                 FXMLLoader loader = new FXMLLoader(
                         this.getClass().getResource("/bv/fxml/GuessPicture.fxml"));
                 Parent popUp = loader.load();
@@ -408,9 +408,9 @@ public class BoardGameController {
                 FXMLLoader loader = new FXMLLoader(
                         this.getClass().getResource("/bv/fxml/WhichColor.fxml"));
                 Parent popUp = loader.load();
-                popupwindow.setY(GameManager.stage.getY() + GameManager.stage.getHeight() / 3.5);
-                popupwindow.setX(GameManager.stage.getX() + GameManager.stage.getWidth() / 7.75);
-                WhichColorController gpc = loader.getController();
+                popupwindow.setY(GameState.stage.getY() + GameState.stage.getHeight() / 3.5);
+                popupwindow.setX(GameState.stage.getX() + GameState.stage.getWidth() / 7.75);
+                GuessScene gpc = loader.getController();
                 gpc.display();
                 Scene scene = new Scene(popUp);
                 popupwindow.setScene(scene);
@@ -433,13 +433,13 @@ public class BoardGameController {
      * sets the status of the game based on the current turn of the players.
      */
     public void update() {
-        player1Score.setText("" + GameManager.playerManager.PLAYER1.getScore());
-        player2Score.setText("" + GameManager.playerManager.PLAYER2.getScore());
-        if (!GameManager.isOnline || GameManager.playerManager.checkIsPlayer1Turn()) {
-            status.setText("Please choose picture to place " + GameManager.gameLogic.COLOR + " cover");
-            GameManager.gameLogic.isChangeDisc = true;
+        player1Score.setText("" + GameState.Players.PLAYER1.getScore());
+        player2Score.setText("" + GameState.Players.PLAYER2.getScore());
+        if (!GameState.isOnline || GameState.Players.checkIsPlayer1Turn()) {
+            status.setText("Please choose picture to place " + GameState.gameLogic.COLOR + " cover");
+            GameState.gameLogic.isChangeDisc = true;
         }
-        // if (GameManager.isPlayer1Turn)
+        // if (GameState.isPlayer1Turn)
 
     }
 
@@ -454,30 +454,30 @@ public class BoardGameController {
 
     /**
      * 
-     * Method changeDisc() changes the color of the disc when the user clicks on it.
+     * Method changeDisc() changes the color of the Lids when the user clicks on it.
      * This method is used for both single player and multiplayer games.
-     * It changes the color of the disc to the color determined by the current dice
+     * It changes the color of the Lids to the color determined by the current dice
      * roll and updates the turn of the players.
      * 
      * @param event MouseEvent object representing the mouse click event.
      */
     public void changeDisc(MouseEvent event) {
-        if (!GameManager.gameLogic.isChangeDisc) {
+        if (!GameState.gameLogic.isChangeDisc) {
             return;
         }
         soundc.click();
-        GameManager.gameLogic.isChangeDisc = false;
+        GameState.gameLogic.isChangeDisc = false;
         Node sourceComponent = (Node) event.getSource();
-        Coordinate coord = (Coordinate) sourceComponent.getUserData();
+        Pos coord = (Pos) sourceComponent.getUserData();
         bgc.createRollDiceBtn();
-        if (GameManager.isOnline) {
-            GameManager.client.sendMessage(coord.toString(), API.Type.CHOOSE_COVER);
+        if (GameState.isOnline) {
+            GameState.client.sendMessage(coord.toString(), API.Type.CHOOSE_COVER);
             return;
         }
         deleteCover();
-        String coverImage = "/bv/assets/Covers/" + GameManager.gameLogic.COLOR + ".png";
-        putCover(coverImage, coord, GameManager.gameLogic.COLOR);
-        setTurn(GameManager.playerManager.checkIsPlayer1Turn());
+        String coverImage = "/bv/assets/Covers/" + GameState.gameLogic.COLOR + ".png";
+        putCover(coverImage, coord, GameState.gameLogic.COLOR);
+        setTurn(GameState.Players.checkIsPlayer1Turn());
     }
 
     /**
@@ -488,7 +488,7 @@ public class BoardGameController {
      * @param event MouseEvent object representing the mouse click event.
      */
     public void alertCover(MouseEvent event) {
-        if (!GameManager.gameLogic.isChangeDisc) {
+        if (!GameState.gameLogic.isChangeDisc) {
             return;
         }
         sc.showAlertMessage(AlertType.ERROR, "Error",

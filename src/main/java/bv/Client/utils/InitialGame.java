@@ -3,26 +3,26 @@ package bv.Client.utils;
 import java.io.File;
 import java.util.ArrayList;
 
-import bv.Client.Model.Disc;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.Lids;
+import bv.Client.Model.GameState;
 
 /**
- * GenerateData is a utility class that generates data for a theme in a game.
+ * InitialGame is a utility class that generates data for a theme in a game.
  * 
  * It has two method, one is generateDataForFolder(), which generates an array
  * of images from a given folder. The data in the array can then be used to
- * generate game disc cards.
+ * generate game Lids cards.
  *
- * The other method, generateDisc(), generates a list of disc cards using the
+ * The other method, generateDisc(), generates a list of Lids cards using the
  * image and value data generated in the generateDataForFolder() method.
  */
 
-public class GenerateData {
+public class InitialGame {
     public static String[] Images;
     public static String[] Values = new String[24];
 
     public static void generateDataForFolder() {
-        String theme = GameManager.gameLogic.theme; // Get theme dynamically
+        String theme = GameState.gameLogic.theme; // Get theme dynamically
         String folderPath = "src/main/resources/bv/assets/Theme/" + theme;
         File directory = new File(folderPath);
 
@@ -53,10 +53,10 @@ public class GenerateData {
         return formattedName;
     }
 
-    public static void generateDisc(ArrayList<Disc> discArray) {
+    public static void generateDisc(ArrayList<Lids> discArray) {
         generateDataForFolder();
         for (int i = 0; i < Values.length; i++) {
-            discArray.add(new Disc(Images[i], Values[i]));
+            discArray.add(new Lids(Images[i], Values[i]));
         }
     }
 

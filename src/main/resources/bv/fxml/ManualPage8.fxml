@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bv.Client.ViewController.ManualPageController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bv.Client.MVC.ManualPageController">
    <children>
       <Button fx:id="BackButton7" layoutX="54.0" layoutY="40.0" mnemonicParsing="false" onAction="#switchtomanualpage7" prefHeight="54.0" prefWidth="110.0" text="Back" />
       <Button fx:id="EndButton" layoutX="846.0" layoutY="40.0" mnemonicParsing="false" onAction="#returnManual" prefHeight="54.0" prefWidth="110.0" text="End" />

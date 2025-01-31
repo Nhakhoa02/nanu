@@ -7,16 +7,16 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 import javafx.application.Platform;
-import bv.Client.Model.Coordinate;
+import bv.Client.Model.Pos;
 import bv.Client.Model.Dice;
-import bv.Client.Model.Disc;
+import bv.Client.Model.Lids;
 import bv.Client.Model.Player;
-import bv.Client.ViewController.BoardGameController;
-import bv.Client.ViewController.EnterProfileOnlController;
-import bv.Client.ViewController.SceneController;
-import bv.Client.ViewController.SoundController;
+import bv.Client.MVC.GameSceneController;
+import bv.Client.MVC.EnterProfileOnlController;
+import bv.Client.MVC.SceneController;
+import bv.Client.MVC.SoundController;
 import bv.Middleware.API;
 
 /**
@@ -32,7 +32,7 @@ import bv.Middleware.API;
  * The class implements functions to handle different messages such as enter
  * profile, roll dice, and end game.
  * 
- * It uses GameManager, BoardGameController, SceneController and other classes
+ * It uses GameState, GameSceneController, SceneController and other classes
  * to update the state of the game and show the appropriate scene.
  */
 
@@ -75,7 +75,7 @@ public class Client {
             return;
         }
         // else this will sent the name and age of second player
-        GameManager.playerManager.PLAYER2 = new Player(data[1], Integer.parseInt(data[2]));
+        GameState.Players.PLAYER2 = new Player(data[1], Integer.parseInt(data[2]));
     }
 
     /**
@@ -128,7 +128,7 @@ public class Client {
             public void run() {
                 SceneController sc = SceneController.getInstance();
                 try {
-                    sc.loadSceneByStage(GameManager.stage, "LeaderBoard");
+                    sc.loadSceneByStage(GameState.stage, "LeaderBoard");
                 } catch (Exception e) {
                     e.printStackTrace();
                     // TODO: handle exception
@@ -148,22 +148,22 @@ public class Client {
         String[] splStrings = s.split(";");
         int column = Integer.parseInt(splStrings[1]);
         int row = Integer.parseInt(splStrings[2]);
-        GameManager.gameLogic.COLOR = splStrings[3];
+        GameState.gameLogic.COLOR = splStrings[3];
         System.out.println("onReceiveChooseCover");
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                BoardGameController bgc = BoardGameController.getInstance();
-                String coverImage = "/bv/assets/Covers/" + GameManager.gameLogic.COLOR + ".png";
+                GameSceneController bgc = GameSceneController.getInstance();
+                String coverImage = "/bv/assets/Covers/" + GameState.gameLogic.COLOR + ".png";
                 try {
-                    if (GameManager.playerManager.checkIsPlayer1Turn()) {
+                    if (GameState.Players.checkIsPlayer1Turn()) {
                         bgc.message.setVisible(false);
                     } else {
                         bgc.message.setText(
-                                "Waiting player " + GameManager.playerManager.PLAYER2.getName() + " roll dice");
+                                "Waiting player " + GameState.Players.PLAYER2.getName() + " roll dice");
                     }
                     bgc.deleteCover();
-                    bgc.putCover(coverImage, new Coordinate(column, row), GameManager.gameLogic.COLOR);
+                    bgc.putCover(coverImage, new Pos(column, row), GameState.gameLogic.COLOR);
                 } catch (Exception e) {
                     e.printStackTrace();
                     // TODO: handle exception
@@ -186,35 +186,35 @@ public class Client {
         String status = splString[1];
         String answer = splString[2];
         SceneController sc = SceneController.getInstance();
-        BoardGameController bgc = BoardGameController.getInstance();
+        GameSceneController bgc = GameSceneController.getInstance();
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 try {
                     if (status.equals("right")) {
-                        GameManager.answer = answer;
-                        if (GameManager.playerManager.checkIsPlayer1Turn()) {
+                        GameState.answer = answer;
+                        if (GameState.Players.checkIsPlayer1Turn()) {
                             SoundController sound = new SoundController();
                             sound.correctAnswer();
                             sc.loadSceneByStage(bgc.popUpStage, "RightAnswer");
                         } else {
                             bgc.message.setText(
-                                    "Player " + GameManager.playerManager.PLAYER2.getName() + " guess " + answer
+                                    "Player " + GameState.Players.PLAYER2.getName() + " guess " + answer
                                             + " on dice "
-                                            + GameManager.gameLogic.COLOR + " got Right answer");
+                                            + GameState.gameLogic.COLOR + " got Right answer");
                         }
                     } else {
-                        GameManager.answer = splString[3];
-                        GameManager.imageString = splString[4];
-                        if (GameManager.playerManager.checkIsPlayer1Turn()) {
+                        GameState.answer = splString[3];
+                        GameState.imageString = splString[4];
+                        if (GameState.Players.checkIsPlayer1Turn()) {
                             SoundController sound = new SoundController();
                             sound.wrongAnswer();
                             sc.loadSceneByStage(bgc.popUpStage, "WrongAnswer");
                         } else {
                             bgc.message.setText(
-                                    "Player " + GameManager.playerManager.PLAYER2.getName() + " guess " + answer
+                                    "Player " + GameState.Players.PLAYER2.getName() + " guess " + answer
                                             + " on dice "
-                                            + GameManager.gameLogic.COLOR + " got Wrong answer");
+                                            + GameState.gameLogic.COLOR + " got Wrong answer");
                         }
                     }
                 } catch (Exception e) {
@@ -236,34 +236,34 @@ public class Client {
     public void onReceivePopUp(String s) throws IOException {
         String[] splString = s.split(";");
         String status = splString[1];
-        BoardGameController bgc = BoardGameController.getInstance();
+        GameSceneController bgc = GameSceneController.getInstance();
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 try {
                     if (status.equals("wrong")) {
-                        if (GameManager.playerManager.checkIsPlayer1Turn()) {
+                        if (GameState.Players.checkIsPlayer1Turn()) {
 
                             bgc.removeGuessPictureBtn();
                             bgc.dice.setVisible(false);
                         } else {
                             bgc.createRollDiceBtn();
                         }
-                        GameManager.playerManager.changeTurn();
-                        bgc.setTurn(GameManager.playerManager.checkIsPlayer1Turn());
+                        GameState.Players.changeTurn();
+                        bgc.setTurn(GameState.Players.checkIsPlayer1Turn());
                     } else {
                         updateScore(s);
                         bgc.update();
-                        if (GameManager.playerManager.checkIsPlayer1Turn()) {
+                        if (GameState.Players.checkIsPlayer1Turn()) {
                             bgc.removeGuessPictureBtn();
                             bgc.message.setVisible(true);
                             bgc.message.setText(
-                                    "Please choose picture to place " + GameManager.gameLogic.COLOR + " cover");
+                                    "Please choose picture to place " + GameState.gameLogic.COLOR + " cover");
                         } else {
                             bgc.message.setText(
-                                    "Waiting for player " + GameManager.playerManager.PLAYER2.getName()
+                                    "Waiting for player " + GameState.Players.PLAYER2.getName()
                                             + " choose picture to cover "
-                                            + GameManager.gameLogic.COLOR);
+                                            + GameState.gameLogic.COLOR);
                         }
                     }
                 } catch (Exception e) {
@@ -282,12 +282,12 @@ public class Client {
      */
     public void updateScore(String s) {
         String[] splStrings = s.split(";");
-        if (GameManager.playerManager.PLAYER1.getName().equals(splStrings[2])) {
-            GameManager.playerManager.PLAYER1.addScore(Integer.parseInt(splStrings[3]));
-            GameManager.playerManager.PLAYER2.addScore(Integer.parseInt(splStrings[5]));
+        if (GameState.Players.PLAYER1.getName().equals(splStrings[2])) {
+            GameState.Players.PLAYER1.addScore(Integer.parseInt(splStrings[3]));
+            GameState.Players.PLAYER2.addScore(Integer.parseInt(splStrings[5]));
         } else {
-            GameManager.playerManager.PLAYER1.addScore(Integer.parseInt(splStrings[5]));
-            GameManager.playerManager.PLAYER2.addScore(Integer.parseInt(splStrings[3]));
+            GameState.Players.PLAYER1.addScore(Integer.parseInt(splStrings[5]));
+            GameState.Players.PLAYER2.addScore(Integer.parseInt(splStrings[3]));
         }
     }
 
@@ -302,10 +302,10 @@ public class Client {
     public void onReceiveRollDice(String s) throws IOException {
         String result = s.split(";")[1];
         // if player 2 turn print message that player 2 get
-        BoardGameController bgc = BoardGameController.getInstance();
-        GameManager.gameLogic.COLOR = result;
-        if (!GameManager.playerManager.checkIsPlayer1Turn()) {
-            bgc.message.setText("Player " + GameManager.playerManager.PLAYER2.getName() + " get: " + result);
+        GameSceneController bgc = GameSceneController.getInstance();
+        GameState.gameLogic.COLOR = result;
+        if (!GameState.Players.checkIsPlayer1Turn()) {
+            bgc.message.setText("Player " + GameState.Players.PLAYER2.getName() + " get: " + result);
             return;
         }
         Platform.runLater(new Runnable() {
@@ -360,19 +360,19 @@ public class Client {
     public void setUpGame(String s) {
         String splString[] = s.split(";");
         Dice.numDice = Integer.parseInt(splString[2]);
-        GameManager.gameLogic.theme = splString[3];
-        GameManager.countDownTimer = Integer.parseInt(splString[4]);
+        GameState.gameLogic.theme = splString[3];
+        GameState.countDownTimer = Integer.parseInt(splString[4]);
         System.out.println(splString.length);
         for (int i = 5; i < splString.length - 1; i = i + 2) {
-            GameManager.gameLogic.myList.add(new Disc(splString[i + 1], splString[i]));
+            GameState.gameLogic.myList.add(new Lids(splString[i + 1], splString[i]));
         }
-        GameManager.gameLogic.pictureName = GameManager.getArrayValue();
+        GameState.gameLogic.pictureName = GameState.getArrayValue();
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 try {
                     SceneController sc = SceneController.getInstance();
-                    sc.enterGameOnline(GameManager.stage);
+                    sc.enterGameOnline(GameState.stage);
                 } catch (Exception e) {
                     System.out.println("can not load game");
                     e.printStackTrace();
@@ -398,12 +398,12 @@ public class Client {
             setUpGame(s);
         } else if (type.equals("turn")) {
             String data = s.split(";")[2];
-            if (GameManager.playerManager.PLAYER1.getName().equals(data)) {
-                GameManager.playerManager.changeTurn(); // because default isPlayer1Turn false
+            if (GameState.Players.PLAYER1.getName().equals(data)) {
+                GameState.Players.changeTurn(); // because default isPlayer1Turn false
             }
         } else {
             System.out.println("cover run");
-            BoardGameController bgc = BoardGameController.getInstance();
+            GameSceneController bgc = GameSceneController.getInstance();
             bgc.coverCoords = getCoord(s);
         }
 
@@ -411,21 +411,21 @@ public class Client {
 
     /**
      * 
-     * This method is used to get the Coordinate array from the given string.
+     * This method is used to get the Pos array from the given string.
      * 
-     * @param s The input string that contains the coordinate data separated by ";".
-     * @return result The Coordinate array that contains the coordinates obtained
+     * @param s The input string that contains the Pos data separated by ";".
+     * @return result The Pos array that contains the coordinates obtained
      *         from the input string.
      */
-    public Coordinate[] getCoord(String s) {
-        Coordinate[] result = new Coordinate[5];
+    public Pos[] getCoord(String s) {
+        Pos[] result = new Pos[5];
         String[] splString = s.split(";");
         int count = 0;
         for (int i = 2; i < splString.length - 1; i = i + 2) {
             if (count >= Dice.numDice) {
                 break;
             }
-            result[count] = new Coordinate(Integer.parseInt(splString[i]), Integer.parseInt(splString[i + 1]));
+            result[count] = new Pos(Integer.parseInt(splString[i]), Integer.parseInt(splString[i + 1]));
             count++;
         }
         for (int i = 0; i < Dice.numDice; i++) {
@@ -445,7 +445,7 @@ public class Client {
     public void sendMessage(String s, API.Type type) {
         try {
             String sendMessage = type.toString() + ";"
-                    + GameManager.playerManager.PLAYER1.getName() + ";" + s;
+                    + GameState.Players.PLAYER1.getName() + ";" + s;
             bufferedWriter.write(sendMessage);
             bufferedWriter.newLine();
             bufferedWriter.flush();

@@ -15,7 +15,7 @@ public class GameLogic {
     /**
      * The list of discs in the game.
      */
-    public ArrayList<Disc> myList = new ArrayList<>();
+    public ArrayList<Lids> myList = new ArrayList<>();
 
     /**
      * The list of picture names in the game.
@@ -33,27 +33,27 @@ public class GameLogic {
     public int totalDisc = 24;
 
     /**
-     * The color of the current disc.
+     * The color of the current Lids.
      */
     public String COLOR;
 
     /**
-     * Indicates whether the disc has been changed.
+     * Indicates whether the Lids has been changed.
      */
     public boolean isChangeDisc = false;
 
     /**
      * The theme of the game.
      */
-    public String theme = "Football";
+    public String theme = "default";
 
     /**
      * Sets up the covers for the game.
      * 
      * @return an array of coordinates representing the locations of the covers
      */
-    public Coordinate[] setUpCover() {
-        Coordinate[] coordinates = new Coordinate[5];
+    public Pos[] setUpCover() {
+        Pos[] coordinates = new Pos[5];
         int count = 0;
         while (count < Dice.numDice) {
             Random random = new Random();
@@ -61,7 +61,7 @@ public class GameLogic {
             if (myList.get(indexList).checkCover())
                 continue;
             myList.get(indexList).setCover();
-            coordinates[count] = Coordinate.convertToCoordinate(indexList);
+            coordinates[count] = Pos.convertToCoordinate(indexList);
             System.out.println("set up cover");
             System.out.println("index: " + indexList);
             System.out.println("x, y" + ": " + coordinates[count].getColumn() + ", " + coordinates[count].getRow());
@@ -71,18 +71,18 @@ public class GameLogic {
     }
 
     /**
-     * Returns the current color coordinate.
+     * Returns the current color Pos.
      * 
-     * @return the coordinate of the current color
+     * @return the Pos of the current color
      */
-    public Coordinate getCurrentColorCoord() {
-        return Coordinate.convertToCoordinate(coverHashMap.get(COLOR));
+    public Pos getCurrentColorCoord() {
+        return Pos.convertToCoordinate(coverHashMap.get(COLOR));
     }
 
     /**
-     * Returns the value of the current disc.
+     * Returns the value of the current Lids.
      * 
-     * @return the value of the current disc
+     * @return the value of the current Lids
      */
     public String getAnswer() {
         return myList.get(coverHashMap.get(COLOR)).getValue();
@@ -104,9 +104,9 @@ public class GameLogic {
     }
 
     /**
-     * Returns the image for the current disc.
+     * Returns the image for the current Lids.
      * 
-     * @return the image for the current disc
+     * @return the image for the current Lids
      */
     public String getCardImage() {
         return myList.get(coverHashMap.get(COLOR)).getCardImage();

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="700.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bv.Client.ViewController.LeaderboardController">
+<Pane prefHeight="700.0" prefWidth="1200.0" stylesheets="@../assets/styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bv.Client.MVC.LeaderboardController">
    <children>
       <Label fx:id="status" alignment="CENTER" layoutX="328.0" layoutY="161.0" prefHeight="64.0" prefWidth="571.0" text="Leaderboard">
          <font>

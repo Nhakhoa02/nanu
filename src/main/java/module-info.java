@@ -6,11 +6,11 @@ module bv {
     requires transitive javafx.media;
 
     opens bv;
-    opens bv.Client.ViewController to javafx.fxml;
+    opens bv.Client.MVC to javafx.fxml;
 
-    // opens bv.Client.ViewController to module javafx.fxml;
+    // opens bv.Client.MVC to module javafx.fxml;
     exports bv.Client.Model;
-    exports bv.Client.ViewController;
+    exports bv.Client.MVC;
     exports bv;
 
 }

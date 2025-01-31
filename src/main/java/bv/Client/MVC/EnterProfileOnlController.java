@@ -1,4 +1,4 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import bv.Client.Client;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 import bv.Client.Model.Player;
 import bv.Middleware.API.Type;
 
@@ -62,8 +62,8 @@ public class EnterProfileOnlController {
 
     public void returnBtn(ActionEvent event) throws IOException {
         soundc.click();
-        if (GameManager.client != null) {
-            GameManager.client.close();
+        if (GameState.client != null) {
+            GameState.client.close();
         }
         SceneController sc = SceneController.getInstance();
         sc.chooseRole(event);
@@ -74,11 +74,11 @@ public class EnterProfileOnlController {
         String name = nameTF.getText();
         String age = ageTF.getText();
         String ipv4 = IPserver.getText();
-        if (!GameManager.playerManager.validateValue(name, age))
+        if (!GameState.Players.validateValue(name, age))
             return;
-        GameManager.playerManager.PLAYER1 = new Player(name, Integer.parseInt(age));
+        GameState.Players.PLAYER1 = new Player(name, Integer.parseInt(age));
         try {
-            GameManager.client = new Client(ipv4);
+            GameState.client = new Client(ipv4);
         } catch (Exception e) {
             SceneController sc = SceneController.getInstance();
             sc.showAlertMessage(AlertType.ERROR, "Connection Failure", "IPv4 Address of the server not found!!");
@@ -86,9 +86,9 @@ public class EnterProfileOnlController {
             return;
             // TODO: handle exception
         }
-        GameManager.isOnline = true;
-        GameManager.client.listenForMessage();
-        GameManager.client.sendMessage(GameManager.playerManager.PLAYER1.getAge() + "", Type.ENTER_PROFILE);
+        GameState.isOnline = true;
+        GameState.client.listenForMessage();
+        GameState.client.sendMessage(GameState.Players.PLAYER1.getAge() + "", Type.ENTER_PROFILE);
         pane.getChildren().remove(okButton);
     }
 }

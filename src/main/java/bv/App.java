@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import java.io.IOException;
  * It sets up the primary stage and scene of the application using JavaFX FXML,
  * loads the HomeScreen.fxml file, and sets the stage's title to "Nanu".
  * 
- * It also sets the stage in the GameManager class for further use.
+ * It also sets the stage in the GameState class for further use.
  */
 public class App extends Application {
 
@@ -31,7 +31,7 @@ public class App extends Application {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Nanu");
-        GameManager.stage = stage;
+        GameState.stage = stage;
         stage.setScene(scene);
         stage.show();
     }

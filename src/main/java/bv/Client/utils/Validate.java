@@ -6,13 +6,13 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * CalculateAge is the class calculates the age of the players.
+ * Validate is the class calculates the age of the players.
  *
  * The class one method: getAge(LocalDate birthday) to calculate the player's
  * age by take the current year minus the player's born year.
  */
 
-public class CalculateAge {
+public class Validate {
     public static int getAge(LocalDate birthday) {
 
         Date date = new Date();

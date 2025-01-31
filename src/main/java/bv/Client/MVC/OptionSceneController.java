@@ -1,4 +1,4 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import java.io.IOException;
 
@@ -12,12 +12,12 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
- * Class ManualOptionsController handles the event for manual options scene.
+ * Class OptionSceneController handles the event for manual options scene.
  * 
  * It provides the functionalities for returning to home screen, navigating to
  * the offline manual and online manual.
  */
-public class ManualOptionsController {
+public class OptionSceneController {
     @FXML
     public Button onlineBtn;
     @FXML

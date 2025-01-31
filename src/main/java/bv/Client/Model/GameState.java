@@ -6,20 +6,20 @@ import java.util.Collections;
 
 import javafx.stage.Stage;
 import bv.Client.Client;
-import bv.Client.ViewController.BoardGameController;
-import bv.Client.ViewController.SceneController;
-import bv.Client.utils.GenerateData;
+import bv.Client.MVC.GameSceneController;
+import bv.Client.MVC.SceneController;
+import bv.Client.utils.InitialGame;
 
 /**
- * The GameManager class is responsible for managing game states and data
+ * The GameState class is responsible for managing game states and data
  * between different classes.
  * 
  * It is contains all states, logic, and data of the application.
  */
 
-public class GameManager {
+public class GameState {
 
-    public static PlayerManager playerManager = new PlayerManager();
+    public static Players Players = new Players();
     public static GameLogic gameLogic = new GameLogic();
     public static Client client;
     public static Stage stage;
@@ -42,7 +42,7 @@ public class GameManager {
      * @return the card image as a string
      */
     public static String getCardImage() {
-        if (GameManager.isOnline) {
+        if (GameState.isOnline) {
             System.out.println("game is not online");
             return imageString;
         }
@@ -57,7 +57,7 @@ public class GameManager {
      * @return the list of values in the game, sorted in ascending order
      */
     public static ArrayList<String> getArrayValue() {
-        ArrayList<String> result = Disc.convertToValue(gameLogic.myList);
+        ArrayList<String> result = Lids.convertToValue(gameLogic.myList);
         Collections.sort(result);
         return result;
     }
@@ -70,7 +70,7 @@ public class GameManager {
      * @return the answer of the current game
      */
     public static String getAnswer() {
-        if (GameManager.isOnline) {
+        if (GameState.isOnline) {
             return answer;
         }
         return gameLogic.getAnswer();
@@ -87,8 +87,8 @@ public class GameManager {
     public static void updateGame(Stage stage) throws IOException {
         gameLogic.totalDisc--;
         if (gameLogic.totalDisc >= Dice.numDice) {
-            BoardGameController bgc = BoardGameController.getInstance();
-            gameLogic.pictureName.remove(GameManager.getAnswer());
+            GameSceneController bgc = GameSceneController.getInstance();
+            gameLogic.pictureName.remove(GameState.getAnswer());
             bgc.removeGuessPictureBtn();
             bgc.update();
             return;
@@ -107,7 +107,7 @@ public class GameManager {
      */
     public static boolean updateGameOnline() {
         gameLogic.totalDisc--;
-        playerManager.addScore();
+        Players.addScore();
         if (gameLogic.totalDisc >= Dice.numDice) {
             return false;
         }
@@ -122,7 +122,7 @@ public class GameManager {
      * field with the sorted array of the discs information.
      */
     public static void startGame() {
-        GenerateData.generateDisc(gameLogic.myList);
+        InitialGame.generateDisc(gameLogic.myList);
         Collections.shuffle(gameLogic.myList);
         gameLogic.pictureName = getArrayValue();
     }

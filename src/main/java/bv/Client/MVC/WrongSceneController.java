@@ -1,4 +1,4 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 
 /**
  * This methods manages the window when the user inputs a wrong value.
@@ -23,7 +23,7 @@ import bv.Client.Model.GameManager;
  * players turn comes
  */
 
-public class WrongAnswerController {
+public class WrongSceneController {
     @FXML
     private Button nextBtn;
     @FXML
@@ -40,30 +40,30 @@ public class WrongAnswerController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        coverText.setText("The image under " + GameManager.gameLogic.COLOR + " cover is:");
-        String selectedImage = "/bv/assets/Theme/" + GameManager.gameLogic.theme + "/"
+        coverText.setText("The image under " + GameState.gameLogic.COLOR + " cover is:");
+        String selectedImage = "/bv/assets/Theme/" + GameState.gameLogic.theme + "/"
                 +
-                GameManager.getCardImage();
+                GameState.getCardImage();
         Image image = new Image(this.getClass()
                 .getResource(selectedImage)
                 .toExternalForm());
         coverImage.setImage(image);
         coverImage.setFitWidth(150);
         coverImage.setFitHeight(150);
-        valueText.setText(GameManager.getAnswer());
+        valueText.setText(GameState.getAnswer());
     }
 
     public void closePopUp(ActionEvent event) throws IOException {
         soundc.click();
         Stage mystage = (Stage) pane.getScene().getWindow();
         mystage.close();
-        BoardGameController bgc = BoardGameController.getInstance();
-        if (GameManager.isOnline) {
-            GameManager.client.closePopUp("wrong");
+        GameSceneController bgc = GameSceneController.getInstance();
+        if (GameState.isOnline) {
+            GameState.client.closePopUp("wrong");
         } else {
-            GameManager.playerManager.changeTurn();
+            GameState.Players.changeTurn();
             bgc.createRollDiceBtn();
-            bgc.setTurn(GameManager.playerManager.checkIsPlayer1Turn());
+            bgc.setTurn(GameState.Players.checkIsPlayer1Turn());
         }
     }
 }

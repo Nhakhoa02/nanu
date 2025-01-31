@@ -1,10 +1,10 @@
 package bv.Client.Model;
 
 import javafx.scene.control.Alert;
-import bv.Client.ViewController.SceneController;
+import bv.Client.MVC.SceneController;
 
 /**
- * PlayerManager is a class that manages the players in a game.
+ * Players is a class that manages the players in a game.
  * 
  * The class has two players: PLAYER1 and PLAYER2.
  * 
@@ -18,7 +18,7 @@ import bv.Client.ViewController.SceneController;
  * wrong.
  */
 
-public class PlayerManager {
+public class Players {
     public Player PLAYER1;
     public Player PLAYER2;
     private boolean isPlayer1Turn = false;

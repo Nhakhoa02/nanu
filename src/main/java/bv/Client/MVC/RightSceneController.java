@@ -1,4 +1,4 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import java.io.IOException;
 
@@ -7,17 +7,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 
 /**
- * The class RightAnswerController is a JavaFX controller class that is used to
+ * The class RightSceneController is a JavaFX controller class that is used to
  * control the right answer pop-up window.
  * 
  * It provides methods to close the right answer pop-up window and perform
  * actions when the next button is clicked.
  */
 
-public class RightAnswerController {
+public class RightSceneController {
     @FXML
     private Button nextBtn;
     @FXML
@@ -38,12 +38,12 @@ public class RightAnswerController {
         soundc.click();
         Stage mystage = (Stage) pane.getScene().getWindow();
         mystage.close();
-        if (GameManager.isOnline) {
-            GameManager.client.closePopUp("right");
+        if (GameState.isOnline) {
+            GameState.client.closePopUp("right");
             return;
         }
-        GameManager.playerManager.addScore();
-        GameManager.updateGame(GameManager.stage);
+        GameState.Players.addScore();
+        GameState.updateGame(GameState.stage);
 
     }
 }

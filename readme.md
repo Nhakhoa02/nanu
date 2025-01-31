@@ -18,7 +18,7 @@ In this repository, we created the java game based on the original nanu game. We
 ## Folder stucture:
 
 - [FXML](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/resources/bv/fxml): Stores our fxml for UI
-- [ViewController](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/java/bv/Client/ViewController): Stores our java file to manage the user interaction with our game
+- [MVC](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/java/bv/Client/MVC): Stores our java file to manage the user interaction with our game
 - [Model](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/java/bv/Client/Model): Defines how data is created, stored, and changed
 - [Server](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/java/bv/Server) and [Middleware](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/java/bv/Middleware): Stores the code for online game
 - [assets](https://github.com/TomNewbie/java-nanu-project/tree/main/src/main/resources/bv/assets): Stores the resources like images, sound ...

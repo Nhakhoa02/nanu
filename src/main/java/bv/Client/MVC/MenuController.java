@@ -1,4 +1,4 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import bv.Client.Model.Dice;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 
 /**
  * The MenuController class provides functionality for the menu screen in a
@@ -39,7 +39,7 @@ public class MenuController {
         difficulty.getItems().addAll(number);
         soundValue.setValue(SoundController.volume * 100);
         displayThemes();
-        theme.setPromptText(GameManager.gameLogic.theme);
+        theme.setPromptText(GameState.gameLogic.theme);
         difficulty.setPromptText(Dice.numDice + "");
     }
 
@@ -73,7 +73,7 @@ public class MenuController {
     @FXML
     public void setTheme() {
         String myTheme = theme.getValue();
-        GameManager.gameLogic.theme = myTheme;
+        GameState.gameLogic.theme = myTheme;
     }
 
 }

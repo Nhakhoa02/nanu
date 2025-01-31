@@ -1,4 +1,4 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 
 /**
  * SceneController is a singleton class responsible for controlling and managing
@@ -102,10 +102,10 @@ public class SceneController {
     public void enterProfile1(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/bv/fxml/EnterProfile.fxml"));
         root = loader.load();
-        if (GameManager.playerManager.PLAYER1 != null) {
+        if (GameState.Players.PLAYER1 != null) {
             EnterProfileController epc = loader.getController();
-            epc.displayProfile(GameManager.playerManager.PLAYER1.getName(),
-                    GameManager.playerManager.PLAYER1.getAge());
+            epc.displayProfile(GameState.Players.PLAYER1.getName(),
+                    GameState.Players.PLAYER1.getAge());
         }
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -119,7 +119,7 @@ public class SceneController {
 
     public void enterGame(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/bv/fxml/BoardGame.fxml"));
-        loader.setController(BoardGameController.getInstance());
+        loader.setController(GameSceneController.getInstance());
         createScene(event, loader);
     }
 
@@ -131,7 +131,7 @@ public class SceneController {
 
     public void enterGameOnline(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/bv/fxml/boardgameOnl.fxml"));
-        loader.setController(BoardGameController.getInstance());
+        loader.setController(GameSceneController.getInstance());
         scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.show();

@@ -1,4 +1,4 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 
 /**
  * This class manages what happens at the end of the game
@@ -40,9 +40,9 @@ public class LeaderboardController {
     SoundController soundc = new SoundController();
 
     public void initialize() throws FileNotFoundException {
-        boolean isPlayer1Win = GameManager.playerManager.PLAYER1.getScore() >= GameManager.playerManager.PLAYER2
+        boolean isPlayer1Win = GameState.Players.PLAYER1.getScore() >= GameState.Players.PLAYER2
                 .getScore();
-        if (GameManager.isOnline) {
+        if (GameState.isOnline) {
             returnBtn.setVisible(false);
             againBtn.setText("Main Menu");
             if (isPlayer1Win) {
@@ -59,15 +59,15 @@ public class LeaderboardController {
         int winnerScore = 0;
         int loserScore = 0;
         if (isPlayer1Win) {
-            winnerName = GameManager.playerManager.PLAYER1.getName();
-            winnerScore = GameManager.playerManager.PLAYER1.getScore();
-            loserName = GameManager.playerManager.PLAYER2.getName();
-            loserScore = GameManager.playerManager.PLAYER2.getScore();
+            winnerName = GameState.Players.PLAYER1.getName();
+            winnerScore = GameState.Players.PLAYER1.getScore();
+            loserName = GameState.Players.PLAYER2.getName();
+            loserScore = GameState.Players.PLAYER2.getScore();
         } else {
-            winnerName = GameManager.playerManager.PLAYER2.getName();
-            winnerScore = GameManager.playerManager.PLAYER2.getScore();
-            loserName = GameManager.playerManager.PLAYER1.getName();
-            loserScore = GameManager.playerManager.PLAYER1.getScore();
+            winnerName = GameState.Players.PLAYER2.getName();
+            winnerScore = GameState.Players.PLAYER2.getScore();
+            loserName = GameState.Players.PLAYER1.getName();
+            loserScore = GameState.Players.PLAYER1.getScore();
         }
         name_1.setText(winnerName);
         point_1.setText("" + winnerScore);
@@ -84,8 +84,8 @@ public class LeaderboardController {
     public void clickAgainButton(ActionEvent event) throws IOException {
         soundc.click();
         SceneController sc = SceneController.getInstance();
-        if (GameManager.isOnline) {
-            GameManager.client.close();
+        if (GameState.isOnline) {
+            GameState.client.close();
             sc.createScene(event, "HomeScreen");
             return;
         }

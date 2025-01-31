@@ -1,4 +1,4 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import bv.Client.Model.Dice;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 import bv.Server.Server;
 import bv.Server.ServerThread;
 
@@ -87,13 +87,13 @@ public class ServerSettingController {
      */
     public void displayThemes() {
 
-        String[] themes = { "Classic", "Football" };
+        String[] themes = { "default", "sport" };
         theme.getItems().addAll(themes);
     }
 
     public void setTimer() {
         int myChoice = timer.getValue();
-        GameManager.countDownTimer = myChoice;
+        GameState.countDownTimer = myChoice;
     }
 
     /**
@@ -125,7 +125,7 @@ public class ServerSettingController {
 
     public void setTheme() {
         String myChoice = theme.getValue();
-        GameManager.gameLogic.theme = myChoice;
+        GameState.gameLogic.theme = myChoice;
     }
 
     public void saveSetting() {
@@ -134,7 +134,7 @@ public class ServerSettingController {
             return;
         }
         settingBtn.setVisible(false);
-        GameManager.startGame();
+        GameState.startGame();
         try {
             ipLabel.setText("Save succesfully! Your IP address is: " + Inet4Address.getLocalHost().getHostAddress());
             ipLabel.setVisible(true);

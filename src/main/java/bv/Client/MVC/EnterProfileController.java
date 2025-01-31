@@ -1,11 +1,11 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 import bv.Client.Model.Player;
 
 /**
@@ -50,8 +50,8 @@ public class EnterProfileController {
         soundc.click();
         String name = nameTF.getText();
         String age = ageTF.getText();
-        GameManager.playerManager.validateValue(name, age);
-        GameManager.playerManager.PLAYER1 = new Player(name, Integer.parseInt(age));
+        GameState.Players.validateValue(name, age);
+        GameState.Players.PLAYER1 = new Player(name, Integer.parseInt(age));
         sceneController.enterProfile2(event, name);
     }
 
@@ -60,15 +60,15 @@ public class EnterProfileController {
         soundc.click();
         String name = nameTF.getText();
         String age = ageTF.getText();
-        if (!GameManager.playerManager.validateValue(name, age))
+        if (!GameState.Players.validateValue(name, age))
             return;
-        if (GameManager.playerManager.PLAYER1.getName().equals(name)) {
+        if (GameState.Players.PLAYER1.getName().equals(name)) {
             sceneController.showAlertMessage(Alert.AlertType.ERROR, "Same name!",
                     "You have the same name as the player 1. Please enter another name!");
             return;
         }
-        GameManager.playerManager.PLAYER2 = new Player(name, Integer.parseInt(age));
-        GameManager.startGame();
+        GameState.Players.PLAYER2 = new Player(name, Integer.parseInt(age));
+        GameState.startGame();
         sceneController.enterGame(event);
     }
 

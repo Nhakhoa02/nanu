@@ -1,4 +1,4 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -7,7 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 
 /**
  * This class manages the putting answer when playing the game nanu.
@@ -30,9 +30,9 @@ public class GuessPictureController {
     // shows the list of the pictures at the game, ans to select the valie which is
     // asked for
     public void display() throws IOException {
-        cover.setText("What is the image under " + GameManager.gameLogic.COLOR + " cover ?");
+        cover.setText("What is the image under " + GameState.gameLogic.COLOR + " cover ?");
 
-        comboBox.getItems().addAll(GameManager.gameLogic.pictureName);
+        comboBox.getItems().addAll(GameState.gameLogic.pictureName);
         comboBox.setVisibleRowCount(7);
     }
 
@@ -45,11 +45,11 @@ public class GuessPictureController {
             sc.showAlertMessage(Alert.AlertType.ERROR, "Missing input", "Please choose a value!!");
             return;
         }
-        if (GameManager.isOnline) {
-            GameManager.client.sendAnswer(myChoice);
+        if (GameState.isOnline) {
+            GameState.client.sendAnswer(myChoice);
             return;
         }
-        String answer = GameManager.getAnswer();
+        String answer = GameState.getAnswer();
         if (myChoice.equals(answer)) {
             soundc.correctAnswer();
             sc.createScene(event, "RightAnswer");

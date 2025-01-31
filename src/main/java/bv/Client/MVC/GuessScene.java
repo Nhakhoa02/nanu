@@ -1,4 +1,4 @@
-package bv.Client.ViewController;
+package bv.Client.MVC;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,12 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import bv.Client.Model.GameManager;
+import bv.Client.Model.GameState;
 
 /**
  * This class manages what to do when a color appears.
  */
-public class WhichColorController {
+public class GuessScene {
 
     @FXML
     private ChoiceBox<String> choiceBox = new ChoiceBox<>();
@@ -22,7 +22,7 @@ public class WhichColorController {
     private Pane mypane;
     @FXML
     private Button nextButton;
-    private List<String> colorList = Arrays.asList(GameManager.gameLogic.imageArray());
+    private List<String> colorList = Arrays.asList(GameState.gameLogic.imageArray());
     SoundController soundc = new SoundController();
 
     public void display() {
@@ -39,12 +39,12 @@ public class WhichColorController {
         }
         Stage popupwindow = (Stage) mypane.getScene().getWindow();
         popupwindow.close();
-        if (GameManager.isOnline) {
-            GameManager.client.chooseColor(myChoice);
+        if (GameState.isOnline) {
+            GameState.client.chooseColor(myChoice);
             return;
         }
-        GameManager.gameLogic.COLOR = myChoice;
-        BoardGameController bgc = BoardGameController.getInstance();
+        GameState.gameLogic.COLOR = myChoice;
+        GameSceneController bgc = GameSceneController.getInstance();
         bgc.getNormalColor();
     }
 }

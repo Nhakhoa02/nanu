@@ -1,82 +1,82 @@
 package bv.Client.Model;
 
 /**
- * Coordinate class represents a coordinate in a 2D grid.
+ * Pos class represents a Pos in a 2D grid.
  * 
  * The grid consists of 7 rows and 7 columns with indices ranging from 0 to 6.
  */
 
-public class Coordinate {
-    /** The column of the coordinate in the grid */
+public class Pos {
+    /** The column of the Pos in the grid */
     private int col;
-    /** The row of the coordinate in the grid */
+    /** The row of the Pos in the grid */
     private int row;
 
     /**
-     * Constructs a new Coordinate object with the given column and row values.
+     * Constructs a new Pos object with the given column and row values.
      * 
-     * @param x The column of the coordinate in the grid.
-     * @param y The row of the coordinate in the grid.
+     * @param x The column of the Pos in the grid.
+     * @param y The row of the Pos in the grid.
      */
-    public Coordinate(int x, int y) {
+    public Pos(int x, int y) {
         this.col = x;
         this.row = y;
     }
 
     /**
-     * Returns the column of the coordinate.
+     * Returns the column of the Pos.
      * 
-     * @return The column of the coordinate.
+     * @return The column of the Pos.
      */
     public int getColumn() {
         return col;
     }
 
     /**
-     * Returns the row of the coordinate.
+     * Returns the row of the Pos.
      * 
-     * @return The row of the coordinate.
+     * @return The row of the Pos.
      */
     public int getRow() {
         return row;
     }
 
     /**
-     * Returns a string representation of the coordinate in the format "column;row".
+     * Returns a string representation of the Pos in the format "column;row".
      * 
-     * @return A string representation of the coordinate.
+     * @return A string representation of the Pos.
      */
     public String toString() {
         return getColumn() + ";" + getRow();
     }
 
     /**
-     * Converts the given index to a Coordinate object.
+     * Converts the given index to a Pos object.
      * 
      * @param index The index to be converted.
-     * @return The Coordinate object that corresponds to the given index.
+     * @return The Pos object that corresponds to the given index.
      */
-    public static Coordinate convertToCoordinate(int index) {
+    public static Pos convertToCoordinate(int index) {
         int count = 0;
         for (int y = 0; y < 7; y++) {
             for (int x = 0; x < 7; x++) {
                 if (x != 0 && y != 0 && x != 6 && y != 6)
                     continue;
                 if (count == index)
-                    return new Coordinate(x, y);
+                    return new Pos(x, y);
                 count++;
             }
         }
-        return new Coordinate(-1, -1); // there is something wrong with index
+        return new Pos(-1, -1); // there is something wrong with index
     }
 
     /**
-     * Converts the given Coordinate object to an index.
+     * Converts the given Pos object to an index.
      * 
-     * @param coord The Coordinate object to be converted.
-     * @return The index that corresponds to the given Coordinate object.
+     * @param coord The Pos object to be converted.
+     * @return The index that corresponds to the given Pos object.
      */
-    public static int convertToIndex(Coordinate coord) {
+    public static int convertToIndex(Pos coord) {
         int x = coord.getColumn();
         int y = coord.getRow();
         int index = 0;
