@@ -52,27 +52,18 @@ Nanu/
 
 
 ## How to play the game
-1. Start the game: Run the executable file.
-2. Select game mode Online or Offline.
-3. Roll the dice: The color rolled determined the image which need to be guessed below which lid.
-4. Guess the image: If the answer was correct, the score will be update . Otherwise, Other player takes the turn.
-5. Game ends when not enough images for the color lids.
-6. Leaderboard: View scores after the game ends.
+1. Start the game: Run the [Nanu JAR](nanu-1.0-SNAPSHOT.jar) file.
+3. Select game mode Online or Offline.
+4. Roll the dice: The color rolled determined the image which need to be guessed below which lid.
+5. Guess the image: If the answer was correct, the score will be update . Otherwise, Other player takes the turn.
+6. Game ends when not enough images for the color lids.
+7. Leaderboard: View scores after the game ends.
 
 ## Installation
 Prerequisites :
 1. Java 17 or later. 
 2. JavaFX SDK installed
 3. Maven (for building the project)
-
-How to run ?
-1. Clone the repository :
-git clone https://github.com/Nhakhoa02/nanu.git
-2. Change to the directory contain the project.
-3. Build the project
-mvn clean package
-4. Run the game 
-java -jar target/nanu-1.0-SNAPSHOT.jar
 
 Alternative way :
 1. Dowload the project folder.
