@@ -108,7 +108,7 @@ public class SceneController {
     }
 
     public void enterGame(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/bv/fxml/BoardGame.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/bv/fxml/boardgame.fxml"));
         loader.setController(GameSceneController.getInstance());
         createScene(event, loader);
     }

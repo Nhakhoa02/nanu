@@ -122,9 +122,16 @@ public class GameState {
      * field with the sorted array of the discs information.
      */
     public static void startGame() {
-        InitialGame.generateDisc(gameLogic.myList);
-        Collections.shuffle(gameLogic.myList);
-        gameLogic.pictureName = getArrayValue();
+        System.out.println("Initializing...");
+        try {
+            InitialGame.generateDisc(gameLogic.myList);
+            Collections.shuffle(gameLogic.myList);
+            gameLogic.pictureName = getArrayValue();
+        } catch (Exception e) {
+            System.out.println("Error during initialization: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
     }
 
 }
