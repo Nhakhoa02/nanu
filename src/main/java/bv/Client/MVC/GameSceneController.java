@@ -275,7 +275,7 @@ public class GameSceneController {
     public void createRollDiceBtn() {
         dice.setVisible(true);
         Image diceImage = new Image(this.getClass()
-                .getResource("/bv/assets/Dice/Dice.png")
+                .getResource("/bv/assets/Dice/dice.png")
                 .toExternalForm());
         dice.setImage(diceImage);
         dice.setFitWidth(100);
